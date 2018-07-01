@@ -59,7 +59,7 @@ app.get(
 		req: fastify.FastifyRequest<http.IncomingMessage>,
 		reply: fastify.FastifyReply<http.ServerResponse>
 	) => {
-		req.log.info("Some info about the current request");
+		req.log.error("Some info about the current request");
 		reply
 			.type("text/html")
 			.view("./www/index.marko", { program }, { stream: true });
@@ -70,7 +70,7 @@ const PORT: number = config.DEFAULT_PORT;
 const dev = process.env.NODE_ENV !== "production";
 
 app.setErrorHandler(function(err, request, reply) {
-	console.log(err);
+    app.log.error(err);
 });
 
 // Run the server!
@@ -78,9 +78,9 @@ const start = async () => {
 	try {
 		await app.listen(PORT);
 		app.log.info(`server listening on ${PORT}`, dev.toString());
-		console.log(`${app.printRoutes()}`);
+        app.log.info(`${app.printRoutes()}`);
 	} catch (err) {
-		console.log(err);
+        app.log.info(err);
 		process.exit(1);
 	}
 };

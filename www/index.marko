@@ -4,13 +4,26 @@ interface Input {
   program: Program;
 }
 */}
+import { config }  from '../config'
+import { add }  from '../utils'
 $ let program = input.program;
 
-<!DOCTYPE html>
-<html>
-  <head/>
-  <body>
-    <div>${program.title}</div>
+static function sum(a, b) {
+    return a + b;
+}
+
+
+style {
+    button.primary {
+        background-color:#09c;
+    }
+}
+<include('./layout.marko' , {pageTitle: 'home'})>
+  <@body>
+    <p>port: ${config.DEFAULT_PORT}</p>
+    <p>add: ${add(1,2)} , ${sum(4,5)}</p>
+    <div.bigText>${program.title}</div>
+    <f-button pid=program.id/>
     <!-- <span for(let i=0;i<1000;i++)>${program.title}</span> -->
-  </body>
-</html>
+  </@body>
+</include>

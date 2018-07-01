@@ -6,12 +6,22 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     components_helpers = require("marko/src/components/helpers"),
     marko_renderer = components_helpers.r,
     marko_defineComponent = components_helpers.c,
+    marko_loadTemplate = require("marko/src/runtime/helper-loadTemplate"),
+    layout_template = marko_loadTemplate(require.resolve("./layout.marko")),
+    module_config_module = require("../config"),
+    config_module = module_config_module.default || module_config_module,
+    config = module_config_module.config,
+    module_utils_module = require("../utils"),
+    utils_module = module_utils_module.default || module_utils_module,
+    add = module_utils_module.add,
     marko_helpers = require("marko/src/runtime/html/helpers"),
-    marko_loadTag = marko_helpers.t,
-    component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
     marko_escapeXml = marko_helpers.x,
-    init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
-    await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
+    f_button_template = marko_loadTemplate(require.resolve("../components/f-button/index.marko")),
+    marko_loadTag = marko_helpers.t,
+    f_button_tag = marko_loadTag(f_button_template),
+    hasRenderBodyKey = Symbol.for("hasRenderBody"),
+    marko_merge = require("marko/src/runtime/helper-merge"),
+    include_tag = marko_loadTag(require("marko/src/taglibs/core/include-tag"));
 
 /**@ts
 import { Program } from "../typings/model";
@@ -20,24 +30,40 @@ interface Input {
 }
 */;
 
+function sum(a, b) {
+    return a + b;
+};
+
 function render(input, out, __component, component, state) {
   var data = input;
 
   let program = input.program;
 
-  out.w("<!DOCTYPE html><html><head></head><body>");
+  include_tag({
+      _target: layout_template,
+      _arg: marko_merge({
+          body: {
+              renderBody: function renderBody(out) {
+                out.w("<p>port: " +
+                  marko_escapeXml(config.DEFAULT_PORT) +
+                  "</p><p>add: " +
+                  marko_escapeXml(add(1, 2)) +
+                  " , " +
+                  marko_escapeXml(sum(4, 5)) +
+                  "</p><div class=\"bigText\">" +
+                  marko_escapeXml(program.title) +
+                  "</div>");
 
-  component_globals_tag({}, out);
-
-  out.w("<div>" +
-    marko_escapeXml(program.title) +
-    "</div>");
-
-  init_components_tag({}, out);
-
-  await_reorderer_tag({}, out, __component, "4");
-
-  out.w("</body></html>");
+                f_button_tag({
+                    pid: program.id
+                  }, out, __component, "5");
+              }
+            },
+          [hasRenderBodyKey]: true
+        }, {
+          pageTitle: "home"
+        })
+    }, out, __component, "0");
 }
 
 marko_template._ = marko_renderer(render, {
@@ -48,10 +74,18 @@ marko_template._ = marko_renderer(render, {
 marko_template.Component = marko_defineComponent({}, marko_template._);
 
 marko_template.meta = {
+    deps: [
+      {
+          type: "css",
+          code: "button.primary {\r\n        background-color:#09c;\r\n    }",
+          virtualPath: "./index.marko.css",
+          path: "./index.marko"
+        }
+    ],
     id: "/fastify-marko$1.0.0/www/index.marko",
     tags: [
-      "marko/src/components/taglib/component-globals-tag",
-      "marko/src/components/taglib/init-components-tag",
-      "marko/src/taglibs/async/await-reorderer-tag"
+      "./layout.marko",
+      "../components/f-button/index.marko",
+      "marko/src/taglibs/core/include-tag"
     ]
   };
