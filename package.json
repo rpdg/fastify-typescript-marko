@@ -1,0 +1,23 @@
+{
+	"name": "fastify-marko",
+	"version": "1.0.0",
+	"description": "",
+	"main": "start/dev.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "ts-node ./start/dev.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"fastify": "^1.7.0",
+		"marko": "^4.11.4",
+		"point-of-view": "^1.1.0"
+	},
+	"devDependencies": {
+		"@types/marko": "^4.6.0",
+		"ts-node": "^7.0.0",
+		"typescript": "^2.9.2"
+	}
+}
