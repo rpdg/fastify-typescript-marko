@@ -16,8 +16,10 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     add = module_utils_module.add,
     marko_helpers = require("marko/src/runtime/html/helpers"),
     marko_escapeXml = marko_helpers.x,
-    f_button_template = marko_loadTemplate(require.resolve("../components/f-button/index.marko")),
+    f_title_template = marko_loadTemplate(require.resolve("../components/f-title/index.marko")),
     marko_loadTag = marko_helpers.t,
+    f_title_tag = marko_loadTag(f_title_template),
+    f_button_template = marko_loadTemplate(require.resolve("../components/f-button/index.marko")),
     f_button_tag = marko_loadTag(f_button_template),
     hasRenderBodyKey = Symbol.for("hasRenderBody"),
     marko_merge = require("marko/src/runtime/helper-merge"),
@@ -50,9 +52,11 @@ function render(input, out, __component, component, state) {
                   marko_escapeXml(add(1, 2)) +
                   " , " +
                   marko_escapeXml(sum(4, 5)) +
-                  "</p><div class=\"bigText\">" +
-                  marko_escapeXml(program.title) +
-                  "</div>");
+                  "</p>");
+
+                f_title_tag({
+                    program: program
+                  }, out, __component, "4");
 
                 f_button_tag({
                     pid: program.id
@@ -85,6 +89,7 @@ marko_template.meta = {
     id: "/fastify-marko$1.0.0/www/index.marko",
     tags: [
       "./layout.marko",
+      "../components/f-title/index.marko",
       "../components/f-button/index.marko",
       "marko/src/taglibs/core/include-tag"
     ]
