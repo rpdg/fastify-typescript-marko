@@ -4,20 +4,26 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "prestart": "tsc -p tsconfig.json",
-		"start": "node server.js"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"publish": "tsc -p tsconfig.json",
+		"start": "node ./dist/server.js"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"fastify": "^1.7.0",
-		"marko": "^4.11.4",
+		"@lasso/marko-taglib": "^1.0.10",
+		"fastify": "^1.8.0",
+		"fastify-static": "^0.12.0",
+		"lasso": "^3.2.1",
+		"lasso-marko": "^2.4.2",
+		"marko": "^4.12.0",
 		"point-of-view": "^1.1.0"
 	},
 	"devDependencies": {
 		"@types/marko": "^4.6.0",
+		"@types/node": "^10.5.2",
+		"copy-dir": "^0.3.0",
 		"ts-node": "^7.0.0",
 		"typescript": "^2.9.2"
 	}

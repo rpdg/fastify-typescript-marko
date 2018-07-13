@@ -1,4 +1,4 @@
-// Compiled using marko@4.11.4 - DO NOT EDIT
+// Compiled using marko@4.12.0 - DO NOT EDIT
 "use strict";
 
 var marko_template = module.exports = require("marko/src/html").t(__filename),
@@ -7,7 +7,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
           this.number = 123;
         }
       },
-    marko_componentType = "/fastify-marko$1.0.0/components/f-button/component-browser",
+    marko_componentType = "/fastify-marko$1.0.0/www/components/f-button/component-browser",
     components_helpers = require("marko/src/components/helpers"),
     marko_renderer = components_helpers.r,
     marko_helpers = require("marko/src/runtime/html/helpers"),
@@ -32,7 +32,7 @@ marko_template._ = marko_renderer(render, {
   }, marko_component);
 
 marko_template.meta = {
-    id: "/fastify-marko$1.0.0/components/f-button/component-browser",
+    id: "/fastify-marko$1.0.0/www/components/f-button/component-browser",
     component: "./component-browser",
     deps: [
       "marko/src/components"

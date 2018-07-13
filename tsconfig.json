@@ -1,13 +1,19 @@
 {
-	"compilerOptions": {
-		"target": "es2017",
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"strict": true,
-		"declaration": true,
+    "compilerOptions": {
+        "baseUrl": "/",
+        "declaration": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "./",
+        "strict": true,
+        "target": "es2017",
+        "outDir": "./dist",
 		"inlineSources": false
-	},
-	"exclude": ["node_moudles", "swagger"]
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules", "swagger" 
+    ]
 }
