@@ -32,7 +32,8 @@ require('lasso').configure({
 app.register(pointOfView, {
 	engine: {
 		marko
-	},
+    },
+    template : 'www'
 });
 
 app.register(require('fastify-static'), {
@@ -91,7 +92,7 @@ const program: Program = {
 
 app.get("/", (req: fastify.FastifyRequest<http.IncomingMessage>, reply: fastify.FastifyReply<http.ServerResponse>) => {
 	//req.log.info("Some info about the current request");
-	reply.type("text/html").view("./www/index.marko", { program });
+	reply.type("text/html").view("./www/1.marko", { program });
 });
 
 app.get("/2", (req: fastify.FastifyRequest<http.IncomingMessage>, reply: fastify.FastifyReply<http.ServerResponse>) => {
@@ -119,10 +120,10 @@ app.setErrorHandler(function(err, request, reply) {
 const start = async () => {
 	try {
 		await app.listen(PORT);
-		//app.log.info(`server listening on ${PORT}`, dev.toString());
+		app.log.info(`server listening on ${PORT}`, dev.toString());
 		app.log.info(`${app.printRoutes()}`);
 	} catch (err) {
-		//app.log.info(err);
+		app.log.info(err);
 		process.exit(1);
 	}
 };

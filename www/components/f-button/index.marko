@@ -2,6 +2,15 @@ class {
     onCreate() {
         this.number = 123;
     }
+    shout() {
+		alert("My favorite number is " + this.number + "!");
+	}
 }
 
-<button.primary on-click('shout')>program-id: ${input.pid}</button>
+style {
+  .primary {
+    color:#09c;
+    font-size:3em;
+  }
+}
+<button.primary >program-id: ${input.pid}</button>

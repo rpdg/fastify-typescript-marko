@@ -8,15 +8,8 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_defineComponent = components_helpers.c,
     marko_loadTemplate = require("marko/src/runtime/helper-loadTemplate"),
     layout_template = marko_loadTemplate(require.resolve("./layout.marko")),
-    module_config_module = require("../dist/config"),
-    config_module = module_config_module.default || module_config_module,
-    config = module_config_module.config,
-    module_utils_module = require("../dist/utils"),
-    utils_module = module_utils_module.default || module_utils_module,
-    add = module_utils_module.add,
-    marko_helpers = require("marko/src/runtime/html/helpers"),
-    marko_escapeXml = marko_helpers.x,
     f_title_template = marko_loadTemplate(require.resolve("./components/f-title/index.marko")),
+    marko_helpers = require("marko/src/runtime/html/helpers"),
     marko_loadTag = marko_helpers.t,
     f_title_tag = marko_loadTag(f_title_template),
     f_button_template = marko_loadTemplate(require.resolve("./components/f-button/index.marko")),
@@ -39,21 +32,15 @@ function render(input, out, __component, component, state) {
       _arg: marko_merge({
           body: {
               renderBody: function renderBody(out) {
-                out.w("<button class=\"primary\">aaa</button><p>port: " +
-                  marko_escapeXml(config.DEFAULT_PORT) +
-                  "</p><p>add: " +
-                  marko_escapeXml(add(1, 2)) +
-                  " , " +
-                  marko_escapeXml(sum(4, 5)) +
-                  "</p>");
+                out.w("<button class=\"primary\">aaa</button>");
 
                 f_title_tag({
                     program: program
-                  }, out, __component, "5");
+                  }, out, __component, "3");
 
                 f_button_tag({
                     pid: program.id
-                  }, out, __component, "6");
+                  }, out, __component, "4");
               }
             },
           [hasRenderBodyKey]: true
