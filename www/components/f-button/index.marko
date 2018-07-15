@@ -1,16 +1,20 @@
 class {
     onCreate() {
-        this.number = 123;
+        this.state = {
+            pid: 0
+        }
+    }
+    onMount() {
+        this.state.pid = input.pid;
     }
     shout() {
-		alert("My favorite number is " + this.number + "!");
+		alert("My favorite number is " + this.state.pid + "!");
 	}
 }
-
 style {
   .primary {
     color:#09c;
     font-size:3em;
   }
 }
-<button.primary >program-id: ${input.pid}</button>
+<button.primary on-click('shout')>program-id: ${input.pid}</button>

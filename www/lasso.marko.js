@@ -17,6 +17,8 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_escapeXml = marko_helpers.x,
     marko_forEach = marko_helpers.f,
     marko_escapeXmlAttr = marko_helpers.xa,
+    f_button_template = marko_loadTemplate(require.resolve("./components/f-button/index.marko")),
+    f_button_tag = marko_loadTag(f_button_template),
     lasso_body_tag = marko_loadTag(require("@lasso/marko-taglib/taglib/body-tag")),
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
@@ -63,13 +65,19 @@ function render(input, out, __component, component, state) {
     out.w("<div>No colors!</div>");
   }
 
-  lasso_body_tag({}, out, __component, "11");
+  out.w("<hr>");
 
-  lasso_body_tag({}, out, __component, "12");
+  f_button_tag({
+      pid: 999
+    }, out, __component, "12");
+
+  lasso_body_tag({}, out, __component, "13");
+
+  lasso_body_tag({}, out, __component, "14");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "13");
+  await_reorderer_tag({}, out, __component, "15");
 
   out.w("</body></html>");
 }
@@ -88,6 +96,7 @@ marko_template.meta = {
       "@lasso/marko-taglib/taglib/head-tag",
       "marko/src/components/taglib/component-globals-tag",
       "./components/app-hello/index.marko",
+      "./components/f-button/index.marko",
       "@lasso/marko-taglib/taglib/body-tag",
       "marko/src/components/taglib/init-components-tag",
       "marko/src/taglibs/async/await-reorderer-tag"

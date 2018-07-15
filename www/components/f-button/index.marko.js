@@ -4,10 +4,15 @@
 var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_component = {
         onCreate: function() {
-          this.number = 123;
+          this.state = {
+              pid: 0
+            };
+        },
+        onMount: function() {
+          this.state.pid = input.pid;
         },
         shout: function() {
-          alert(("My favorite number is " + this.number) + "!");
+          alert(("My favorite number is " + this.state.pid) + "!");
         }
       },
     marko_componentType = "/fastify-marko$1.0.0/www/components/f-button/index.marko",
@@ -15,12 +20,17 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_renderer = components_helpers.r,
     marko_defineComponent = components_helpers.c,
     marko_helpers = require("marko/src/runtime/html/helpers"),
-    marko_escapeXml = marko_helpers.x;
+    marko_escapeXml = marko_helpers.x,
+    marko_attr = marko_helpers.a;
 
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<button class=\"primary\">program-id: " +
+  out.w("<button class=\"primary\"" +
+    marko_attr("data-marko", {
+      onclick: __component.d("shout", false)
+    }, false) +
+    ">program-id: " +
     marko_escapeXml(input.pid) +
     "</button>");
 }

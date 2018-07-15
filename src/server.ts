@@ -92,6 +92,11 @@ const program: Program = {
 
 app.get("/", (req: fastify.FastifyRequest<http.IncomingMessage>, reply: fastify.FastifyReply<http.ServerResponse>) => {
 	//req.log.info("Some info about the current request");
+	reply.type("text/html").view("./www/index.marko", { program });
+});
+
+app.get("/1", (req: fastify.FastifyRequest<http.IncomingMessage>, reply: fastify.FastifyReply<http.ServerResponse>) => {
+	//req.log.info("Some info about the current request");
 	reply.type("text/html").view("./www/1.marko", { program });
 });
 
