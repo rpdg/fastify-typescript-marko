@@ -38,21 +38,23 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
+  out.w("<script>\r\n    var aaa = {a :1,\r\n    b:2,\r\n    v:3};\r\n    </script>");
+
   f_title_tag({
       program: data.program
-    }, out, __component, "7");
+    }, out, __component, "8");
 
   f_button_tag({
       pid: data.program.id
-    }, out, __component, "8");
-
-  lasso_body_tag({}, out, __component, "9");
+    }, out, __component, "9");
 
   lasso_body_tag({}, out, __component, "10");
 
+  lasso_body_tag({}, out, __component, "11");
+
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "11");
+  await_reorderer_tag({}, out, __component, "12");
 
   out.w("</body></html>");
 }

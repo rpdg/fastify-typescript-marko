@@ -19,7 +19,7 @@ function render(input, out, __component, component, state) {
     marko_str(input.program) +
     "');\r\n    console.info('" +
     marko_str(JSON.stringify(input.program)) +
-    "');\r\n</script>");
+    "');\r\n    var obj = {\r\n        d1 : 1,\r\n        d2 : 2\r\n    }\r\n</script>");
 }
 
 marko_template._ = marko_renderer(render, {

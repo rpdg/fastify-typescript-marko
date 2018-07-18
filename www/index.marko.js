@@ -76,6 +76,8 @@ marko_template.Component = marko_defineComponent({}, marko_template._);
 
 marko_template.meta = {
     deps: [
+      "package: ./browser.json",
+      "./style.css",
       {
           type: "css",
           code: ".b1{\r\n        .primary {\r\n            background-color:#f9c;\r\n        }\r\n    }",

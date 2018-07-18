@@ -20,6 +20,7 @@ const outputDir = path.join(__dirname, '../static');
 // Configure lasso to control how JS/CSS/etc. is delivered to the browser
 require('lasso').configure({
 	plugins: [
+		"lasso-sass",
 	  'lasso-marko' // Allow Marko templates to be compiled and transported to the browser
 	],
 	outputDir: outputDir, // Place all generated JS/CSS/etc. files into the "static" dir

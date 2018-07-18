@@ -8,9 +8,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
               pid: 0
             };
         },
-        onMount: function() {
-          this.state.pid = input.pid;
-        },
+        onMount: function() {},
         shout: function() {
           alert(("My favorite number is " + this.state.pid) + "!");
         }
